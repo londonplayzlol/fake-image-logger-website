@@ -1,0 +1,176 @@
+<html>
+<head>
+    <title>Invoice</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .header .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .header .date {
+            font-size: 14px;
+            color: #999;
+        }
+        .email-info {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .email-info img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .email-info .email-details {
+            font-size: 14px;
+        }
+        .email-info .email-details .name {
+            font-weight: bold;
+        }
+        .invoice-section {
+            margin-top: 40px;
+        }
+        .invoice-section .apple-logo {
+            text-align: center;
+        }
+        .invoice-section .apple-logo img {
+            width: 50px;
+        }
+        .invoice-section .invoice-title {
+            text-align: center;
+            font-size: 24px;
+            color: #999;
+            margin-top: 10px;
+        }
+        .invoice-details {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .invoice-details .details {
+            background-color: #f9f9f9;
+            padding: 10px 20px;
+            border-radius: 5px;
+            width: 300px;
+        }
+        .invoice-details .details div {
+            margin-bottom: 10px;
+        }
+        .invoice-details .details div span {
+            display: block;
+            color: #999;
+        }
+        .app-store {
+            margin-top: 40px;
+        }
+        .app-store .title {
+            font-size: 18px;
+            font-weight: bold;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .app-store .item {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .app-store .item img {
+            width: 60px;
+            height: 60px;
+            margin-right: 10px;
+        }
+        .app-store .item .details {
+            font-size: 14px;
+        }
+        .app-store .item .details .name {
+            font-weight: bold;
+        }
+        .app-store .item .details .link {
+            color: #007aff;
+            text-decoration: none;
+        }
+        .price-section {
+            margin-top: 40px;
+        }
+        .price-section .price-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+        .price-section .price-details .total {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="title">Your invoice from Apple.</div>
+            <div class="date">10 Jun 2017</div>
+        </div>
+        <div class="email-info">
+            <img src="https://placehold.co/40x40" alt="User profile picture">
+            <div class="email-details">
+                <div class="name">Apple <span>&lt;no_reply@email.apple.com&gt;</span></div>
+                <div>to me</div>
+            </div>
+        </div>
+        <div class="invoice-section">
+            <div class="apple-logo">
+                <img src="https://placehold.co/50x50" alt="Apple logo">
+            </div>
+            <div class="invoice-title">Invoice</div>
+            <div class="invoice-details">
+                <div class="details">
+                    <div>
+                        <span>APPLE ID</span>
+                        Snow_Crash
+                    </div>
+                    <div>
+                        <span>INVOICE DATE</span>
+                        20 Oct 2017
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="app-store">
+            <div class="title">App Store</div>
+            <div class="item">
+                <img src="https://placehold.co/60x60" alt="App icon">
+                <div class="details">
+                    <div class="name">One Month Builders Club</div>
+                    <div>In-App Purchase</div>
+                    <div>Snow_Crash</div>
+                    <a href="#" class="link">Report a Problem</a>
+                </div>
+                <div class="price">$5.99</div>
+            </div>
+        </div>
+        <div class="price-section">
+            <div class="price-details">
+                <div>Inclusive of VAT at 20%</div>
+            </div>
+            <div class="price-details">
+                <div>Subtotal</div
