@@ -2,240 +2,192 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>FART BOMB CHAOS 💣💨</title>
+<title>Fart Bomb Chaos 💣💨</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
+/* ================= GLOBAL ================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  height: 100vh;
+html, body {
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  background: radial-gradient(circle at top, #20002c, #000);
+  touch-action: manipulation;
   font-family: system-ui, sans-serif;
+}
+
+body {
+  background: radial-gradient(circle at top, #1d0033, #000);
   color: white;
 }
 
-/* TITLE */
+/* ================= RESPONSIVE VARS ================= */
+:root {
+  --runner-size: 160px;
+  --runner-scale: 1.6;
+  --ground-height: 110px;
+  --speed: 3.4s;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --runner-size: 120px;
+    --runner-scale: 1.3;
+    --ground-height: 90px;
+    --speed: 1.6s;
+  }
+}
+
+/* ================= UI ================= */
 .title {
   position: fixed;
-  top: 15px;
+  top: 12px;
   width: 100%;
   text-align: center;
-  font-size: 1.4rem;
-  opacity: 0.85;
-  z-index: 20;
-}
-/* 🤸 IMPROVED RAGDOLL MODE */
-.ragdoll {
-  animation: ragdollChaos 1.2s cubic-bezier(.2,.8,.2,1) forwards !important;
-  transform-origin: center bottom;
-  filter: blur(1px);
+  font-size: 1.2rem;
+  opacity: 0.8;
+  z-index: 50;
 }
 
-@keyframes ragdollChaos {
-  0% {
-    transform: scale(1.8) rotate(0deg) translateY(0);
-  }
-
-  20% {
-    transform: scale(1.9, 1.6) rotate(45deg) translateY(-40px);
-  }
-
-  40% {
-    transform: scale(1.6, 2.1) rotate(-120deg) translateY(-120px);
-  }
-
-  60% {
-    transform: scale(2.2, 1.2) rotate(260deg) translateY(40px);
-  }
-
-  80% {
-    transform: scale(1.7, 1.9) rotate(340deg) translateY(120px);
-  }
-
-  100% {
-    transform: scale(1.8) rotate(360deg) translateY(200px);
-  }
-}
-
-/* GROUND */
+/* ================= GROUND ================= */
 .ground {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 120px;
+  height: var(--ground-height);
   background: linear-gradient(#222, #000);
   z-index: 5;
 }
 
-/* RUNNER */
+/* ================= RUNNER ================= */
 .bolt {
-    transform: scale(1.8);
-transform-origin: bottom center;
-
-      width: 160px;
-  transform: scale(1.8);
-  transform-origin: bottom center;
   position: absolute;
-  bottom: 120px;
-  left: -200px;
-  width: 160px;
-  animation: run 4s linear infinite;
+  bottom: var(--ground-height);
+  left: -40%;
+  width: var(--runner-size);
+  transform: scale(var(--runner-scale));
+  transform-origin: bottom center;
+  animation: run var(--speed) linear infinite;
   z-index: 10;
-  filter: drop-shadow(0 0 20px rgba(255,255,255,0.6));
-
+  will-change: transform, left;
 }
 
 @keyframes run {
-  0% { left: -200px; }
-  100% { left: 110%; }
+  from { left: -40%; }
+  to   { left: 110%; }
 }
 
-/* 💎 SEXY RGB PLASMA FART */
+/* ================= FART (MOBILE SAFE) ================= */
 .fart {
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   pointer-events: none;
 
   background: radial-gradient(
-    circle at 30% 30%,
-    rgba(255,255,255,0.9),
-    rgba(255,0,255,0.8),
-    rgba(0,255,255,0.6),
+    circle,
+    rgba(255,255,255,.9),
+    rgba(0,255,255,.6),
     rgba(0,0,0,0)
   );
 
-  filter: blur(4px) saturate(180%) contrast(120%);
-
-  box-shadow:
-    0 0 20px rgba(255,0,255,0.8),
-    0 0 40px rgba(0,255,255,0.6),
-    0 0 80px rgba(0,255,0,0.5);
-
-  animation:
-    sexyFartFloat 1.8s ease-out forwards,
-    sexyRGB 1.2s linear infinite,
-    sexyPulse 0.6s ease-in-out infinite alternate;
+  filter: blur(2px);
+  animation: fartFloat 1.2s ease-out forwards;
 }
 
-@keyframes sexyFartFloat {
-  0% {
-    transform: scale(0.3) rotate(0deg);
+@keyframes fartFloat {
+  from {
+    transform: scale(0.6);
     opacity: 1;
   }
-  100% {
-    transform: translateX(-140px) translateY(-80px) scale(2.8) rotate(180deg);
+  to {
+    transform: translateX(-80px) translateY(-40px) scale(1.8);
     opacity: 0;
   }
 }
 
-@keyframes sexyRGB {
-  0% { filter: hue-rotate(0deg) saturate(200%); }
-  100% { filter: hue-rotate(360deg) saturate(200%); }
-}
-
-@keyframes sexyPulse {
-  from {
-    box-shadow:
-      0 0 20px rgba(255,0,255,0.6),
-      0 0 50px rgba(0,255,255,0.5);
-  }
-  to {
-    box-shadow:
-      0 0 40px rgba(255,255,0,0.9),
-      0 0 90px rgba(0,255,0,0.8);
-  }
-}
-
-/* 💣 BOMB */
+/* ================= BOMB ================= */
 .bomb {
   position: absolute;
-  top: -60px;
-  width: 42px;
-  height: 42px;
-  background: radial-gradient(circle at 30% 30%, #777, #111);
+  top: -50px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  box-shadow: inset -4px -6px 8px rgba(0,0,0,.8);
-  animation: fall 2.3s linear forwards;
-}
-
-.bomb::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  width: 4px;
-  height: 12px;
-  background: #444;
-  transform: translateX(-50%);
+  background: radial-gradient(circle at 30% 30%, #777, #111);
+  box-shadow: inset -3px -5px 6px rgba(0,0,0,.7);
+  animation: fall 2.4s linear forwards;
 }
 
 .bomb::after {
   content: "";
   position: absolute;
-  top: -14px;
+  top: -10px;
   left: 50%;
   width: 6px;
   height: 6px;
   background: orange;
   border-radius: 50%;
   transform: translateX(-50%);
-  animation: fuse 0.4s infinite alternate;
-}
-
-@keyframes fuse {
-  from { opacity: 0.3; }
-  to { opacity: 1; }
 }
 
 @keyframes fall {
-  to { top: calc(100vh - 120px); }
+  to { top: calc(100vh - var(--ground-height)); }
 }
 
-/* 💥 EXPLOSION */
+/* ================= EXPLOSION ================= */
 .explosion {
   position: absolute;
   width: 20px;
   height: 20px;
-  background: radial-gradient(circle, #fff, yellow, red, transparent);
   border-radius: 50%;
+  background: radial-gradient(circle, #fff, yellow, red, transparent);
   animation: boom 0.6s ease-out forwards;
   pointer-events: none;
 }
 
 @keyframes boom {
   to {
-    transform: scale(7);
+    transform: scale(6);
     opacity: 0;
   }
 }
 
-/* 📸 SCREEN SHAKE */
+/* ================= SCREEN SHAKE (SAFE) ================= */
 .shake {
-  animation: shake 0.4s;
+  animation: shake 0.25s;
 }
 
 @keyframes shake {
   0% { transform: translate(0); }
-  20% { transform: translate(-10px, 5px); }
-  40% { transform: translate(8px, -6px); }
-  60% { transform: translate(-6px, 4px); }
-  80% { transform: translate(4px, -3px); }
+  25% { transform: translate(-5px, 3px); }
+  50% { transform: translate(4px, -3px); }
+  75% { transform: translate(-3px, 2px); }
   100% { transform: translate(0); }
+}
+
+/* ================= RAGDOLL (MOBILE FRIENDLY) ================= */
+.ragdoll {
+  animation: ragdollMobile 0.8s ease-out forwards !important;
+}
+
+@keyframes ragdollMobile {
+  0%   { transform: scale(var(--runner-scale)) rotate(0deg); }
+  40%  { transform: scale(var(--runner-scale)) rotate(25deg) translateY(-20px); }
+  70%  { transform: scale(var(--runner-scale)) rotate(-30deg) translateY(30px); }
+  100% { transform: scale(var(--runner-scale)) rotate(0deg) translateY(70px); }
 }
 </style>
 </head>
 
 <body>
 
-<div class="title">💣 BOMB💨</div>
+<div class="title">💣 FART BOMB CHAOS 💨</div>
 
 <img
   src="runner.png"
@@ -246,56 +198,32 @@ transform-origin: bottom center;
 
 <div class="ground"></div>
 
-<!-- SOUNDS -->
 <audio id="fartSound" src="https://www.myinstants.com/media/sounds/fart.mp3"></audio>
 <audio id="boomSound" src="https://www.myinstants.com/media/sounds/explosion.mp3"></audio>
 
 <script>
-    function fartPushBombs(fartX, fartY) {
-  document.querySelectorAll(".bomb").forEach(bomb => {
-    const rect = bomb.getBoundingClientRect();
-    const dx = rect.left - fartX;
-    const dy = rect.top - fartY;
-    const dist = Math.sqrt(dx * dx + dy * dy);
-
-    if (dist < 150) {
-      bomb.style.transition = "transform 0.3s ease";
-      bomb.style.transform = `translateX(${dx * 0.8}px) translateY(-20px)`;
-    }
-  });
-}
-
+const bolt = document.getElementById("bolt");
 const fartSound = document.getElementById("fartSound");
 const boomSound = document.getElementById("boomSound");
-const bolt = document.getElementById("bolt");
+const isMobile = window.innerWidth < 768;
 
-/* 💨 SEXY FART LOOP */
+/* ================= FART LOOP ================= */
 setInterval(() => {
   const fart = document.createElement("div");
   fart.className = "fart";
 
   const rect = bolt.getBoundingClientRect();
   fart.style.left = rect.left + "px";
-  fart.style.top = rect.top + 60 + "px";
+  fart.style.top = rect.top + rect.height * 0.6 + "px";
 
   document.body.appendChild(fart);
-
   fartSound.currentTime = 0;
   fartSound.play().catch(()=>{});
 
-  /* EXTRA TRAIL */
-  for (let i = 0; i < 2; i++) {
-    const trail = fart.cloneNode();
-    trail.style.opacity = "0.5";
-    trail.style.transform = "scale(0.6)";
-    document.body.appendChild(trail);
-    setTimeout(() => trail.remove(), 1200);
-  }
+  setTimeout(() => fart.remove(), 1200);
+}, isMobile ? 300 : 200);
 
-  setTimeout(() => fart.remove(), 1800);
-}, 260);
-
-/* 💣 BOMB SPAWNER */
+/* ================= BOMB LOOP ================= */
 setInterval(() => {
   const bomb = document.createElement("div");
   bomb.className = "bomb";
@@ -303,36 +231,37 @@ setInterval(() => {
   document.body.appendChild(bomb);
 
   setTimeout(() => explode(bomb), 2200);
-}, 450);
+}, isMobile ? 700 : 450);
 
-/* 💥 EXPLOSION + SHAKE */
+/* ================= EXPLOSION ================= */
 function explode(bomb) {
+  if (!bomb) return;
+
   const rect = bomb.getBoundingClientRect();
   bomb.remove();
 
-  const explosion = document.createElement("div");
-  explosion.className = "explosion";
-  explosion.style.left = rect.left + "px";
-  explosion.style.top = rect.top + "px";
-  explosion.style.transform = "scale(1)";
-  document.body.appendChild(explosion);
+  const exp = document.createElement("div");
+  exp.className = "explosion";
+  exp.style.left = rect.left + "px";
+  exp.style.top = rect.top + "px";
+  document.body.appendChild(exp);
 
   boomSound.currentTime = 0;
   boomSound.play().catch(()=>{});
 
-  // Screen shake
   document.body.classList.add("shake");
-  setTimeout(() => document.body.classList.remove("shake"), 400);
+  setTimeout(() => document.body.classList.remove("shake"), 250);
 
-  // 🔥 25% chance = BIG EXPLOSION
-  if (Math.random() < 0.25) {
-    explosion.style.transform = "scale(2.2)";
-    ragdollBolt(); // 🤸 RAGDOLL TRIGGER
-  }
+  if (Math.random() < 0.25) ragdoll();
 
-  setTimeout(() => explosion.remove(), 600);
+  setTimeout(() => exp.remove(), 600);
 }
 
+/* ================= RAGDOLL ================= */
+function ragdoll() {
+  bolt.classList.add("ragdoll");
+  setTimeout(() => bolt.classList.remove("ragdoll"), 800);
+}
 </script>
 
 </body>
